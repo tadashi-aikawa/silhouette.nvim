@@ -4,7 +4,7 @@
     <p>
     <div>Neovimでシンプルにタスクを管理するためのプラグインです。</div>
     <div>目の前のタスクに集中することのみにフォーカスしています。</div>
-    </p>
+    </div>
 </div>
 
 > [!WARNING]
@@ -29,9 +29,23 @@
 ```lua
 {
   "tadashi-aikawa/silhouette.nvim",
+  ft = "markdown",
   dependencies = {
     "vim-denops/denops.vim",
-  }
+  },
+  config = function()
+    -- denops.nvimが起動し終わる前に実行されるとエラーになるためwaitを入れる
+    -- マシンスペックや環境によって500(ms)の値を調整する必要あり
+    vim.defer_fn(function()
+      -- 設定はデフォルト値. 指定しなかった場合は下記の値になります
+      require("silhouette").setup({
+        task = {
+          repetition_tasks_path = "./repetition-tasks.md",
+          holidays_path = "./holidays.md",
+        },
+      })
+    end, 500)
+  end,
 }
 ```
 
@@ -39,13 +53,13 @@
 
 以下のファイルを作成してください。
 
-| ファイル                 | ファイルパス            |
-|--------------------------|-------------------------|
-| [繰り返しタスクファイル] | `./repetition-tasks.md` |
-| [休日設定ファイル]       | `./holidays.md`         |
+| ファイル                 | ファイルパス(デフォルト) |
+|--------------------------|--------------------------|
+| [繰り返しタスクファイル] | `./repetition-tasks.md`  |
+| [休日設定ファイル]       | `./holidays.md`          |
 
-> [!NOTE]
-> 近いうちにファイルパスは設定に追加予定です。
+> [!TIP]
+> ファイルパスは設定で変更できます。
 
 ## 対応コマンド
 
