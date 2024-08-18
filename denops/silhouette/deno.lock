@@ -1,0 +1,27 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@core/unknownutil": "jsr:@core/unknownutil@4.2.0",
+      "npm:owlelia@0.48.1": "npm:owlelia@0.48.1"
+    },
+    "jsr": {
+      "@core/unknownutil@4.2.0": {
+        "integrity": "cc0609f2e9fcfd68783c8c34d588261464114770d83047e93eaa1e13732aaedb"
+      }
+    },
+    "npm": {
+      "dayjs@1.11.12": {
+        "integrity": "sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==",
+        "dependencies": {}
+      },
+      "owlelia@0.48.1": {
+        "integrity": "sha512-DB5Ac4PCkqZ1uWt8HSTzaHZqh4BiS0DzluWnYFdSd9h4JITtceAq3qO3TmhiMtMJ3s/Z6YWj8sq+GS0yr6oZng==",
+        "dependencies": {
+          "dayjs": "dayjs@1.11.12"
+        }
+      }
+    }
+  },
+  "remote": {}
+}
