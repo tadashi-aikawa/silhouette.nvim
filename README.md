@@ -33,9 +33,12 @@
   dependencies = {
     "vim-denops/denops.vim",
   },
+  keys = {
+    { "<Space>sp", ":SilhouetteMoveToProgress<CR>", silent = true },
+  },
   config = function()
     -- denops.nvimが起動し終わる前に実行されるとエラーになるためwaitを入れる
-    -- マシンスペックや環境によって500(ms)の値を調整する必要あり
+    -- マシンスペックや環境によって1000(ms)の値を調整する必要あり
     vim.defer_fn(function()
       -- 設定はデフォルト値. 指定しなかった場合は下記の値になります
       require("silhouette").setup({
@@ -44,7 +47,7 @@
           holidays_path = "./holidays.md",
         },
       })
-    end, 500)
+    end, 1000)
   end,
 }
 ```
