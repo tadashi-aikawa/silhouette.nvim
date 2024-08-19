@@ -9,7 +9,7 @@ function M.setup(opts)
 	-- ここが実行されてsetupが見つからなくてエラーになってしまう...
 	vim.fn["denops#request"]("silhouette", "setup", { vim.fn.json_encode(opts) })
 
-	vim.api.nvim_create_user_command("Silhouette", function(command)
+	vim.api.nvim_create_user_command("SilhouetteInsertTasks", function(command)
 		vim.fn["denops#request"]("silhouette", "insertTasks", command.fargs)
 	end, { nargs = "?" })
 	vim.api.nvim_create_user_command("SilhouetteMoveToProgress", function(command)
