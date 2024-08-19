@@ -40,6 +40,16 @@ export class AppHelper {
     return { row, col };
   }
 
+  async setCursor(cursor: Cursor): Promise<void> {
+    await fn.nvim_win_set_cursor(this.denops, 0, [cursor.row, cursor.col]);
+  }
+
+  async readBuffer(): Promise<string[]> {
+    const cBuf = await this.getCurrentBuffer();
+    const r = await fn.nvim_buf_get_lines(this.denops, cBuf, 0, -1, false);
+    return r as string[];
+  }
+
   async writeToBuffer(text: string[]) {
     const cBuf = await this.getCurrentBuffer();
     const cur = await this.getCursor();

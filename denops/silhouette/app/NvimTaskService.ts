@@ -9,6 +9,13 @@ import {
 import type { AppHelper } from "../app-helper.ts";
 import type { RepetitionTask } from "../domain/entity/RepetitionTask.ts";
 
+const pattern = {
+  progress: /[-*] \[~] (?<name>.+)/g,
+} as const;
+
+export function isLineProgress(line: string): boolean {
+  return Boolean(line.match(pattern.progress));
+}
 export class NvimTaskService implements TaskService {
   constructor(
     private appHelper: AppHelper,
@@ -48,5 +55,17 @@ export class NvimTaskService implements TaskService {
     return today
       .toDate(today.plusMonths(3))
       .filter((x) => task.shouldTry(x, holidays));
+  }
+
+  async moveToProgress(): Promise<void> {
+    const lines = await this.appHelper.readBuffer();
+    if (lines.length === 0) {
+      return;
+    }
+
+    const progressLineIndex = lines.findIndex(isLineProgress);
+    if (progressLineIndex !== -1) {
+      this.appHelper.setCursor({ row: progressLineIndex + 1, col: 0 });
+    }
   }
 }

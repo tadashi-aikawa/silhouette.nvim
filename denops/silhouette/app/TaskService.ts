@@ -13,4 +13,5 @@ export interface TaskService {
   loadRepetitionTasks(): AsyncResult<RepetitionTask[], BaseError>;
   calcDatesInFuture(task: RepetitionTask, holidays: DateTime[]): DateTime[];
   loadHolidays(): AsyncResult<DateTime[], BaseError>;
+  moveToProgress(): Promise<void>;
 }

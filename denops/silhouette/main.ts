@@ -6,7 +6,7 @@ import { DateTime } from "npm:owlelia@0.48.1";
 import { assert, is } from "jsr:@core/unknownutil";
 import { TaskRepository } from "./repository/TaskRepository.ts";
 import { TaskService } from "./app/TaskService.ts";
-import { setup as setupConfig, config } from "./config.ts";
+import { config, setup as setupConfig } from "./config.ts";
 
 export const main: Entrypoint = (denops) => {
   const appHelper = new AppHelper(denops);
@@ -44,6 +44,14 @@ export const main: Entrypoint = (denops) => {
         `Successfully inserted tasks for ${date.displayDate}`,
         "INFO",
       );
+    },
+
+    /**
+     * 進行中のタスクが存在する行に移動する
+     * 複数存在する場合は最初のそれに移動する
+     */
+    async moveToProgress() {
+      await taskService.moveToProgress();
     },
   };
 };

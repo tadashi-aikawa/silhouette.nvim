@@ -12,6 +12,9 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("Silhouette", function(command)
 		vim.fn["denops#request"]("silhouette", "insertTasks", command.fargs)
 	end, { nargs = "?" })
+	vim.api.nvim_create_user_command("SilhouetteMoveToProgress", function(command)
+		vim.fn["denops#request"]("silhouette", "moveToProgress", command.fargs)
+	end, { nargs = "?" })
 end
 
 return M
