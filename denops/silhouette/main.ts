@@ -53,5 +53,31 @@ export const main: Entrypoint = (denops) => {
     async moveToProgress() {
       await taskService.moveToProgress();
     },
+
+    /**
+     * 現在行の繰り返しタスク実施予定日直近3ヶ月の日付文字列リストを返します
+     */
+    async getTaskDates(): Promise<string[]> {
+      const task = await taskService.loadLineAsRepetitionTask();
+      if (!task) {
+        return [];
+      }
+
+      const [holidays, err] = (await taskService.loadHolidays()).unwrap();
+      if (err) {
+        await appHelper.notify(err.message, "ERROR");
+        return [];
+      }
+
+      const dates = taskService.calcDatesInFuture(task, holidays);
+
+      return dates.map((x) => {
+        let s = x.displayDateFull;
+        if (holidays.some((d) => d.equals(x))) {
+          s = `${s} ㊡`;
+        }
+        return s;
+      });
+    },
   };
 };

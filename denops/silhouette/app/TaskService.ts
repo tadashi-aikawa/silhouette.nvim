@@ -1,4 +1,5 @@
 import type {
+  AsyncNullable,
   AsyncResult,
   BaseError,
   DateTime,
@@ -11,6 +12,7 @@ export interface TaskService {
   setRepository(repository: TaskRepository): void;
   insertTasks(date: DateTime): Promise<Nullable<BaseError>>;
   loadRepetitionTasks(): AsyncResult<RepetitionTask[], BaseError>;
+  loadLineAsRepetitionTask(): AsyncNullable<RepetitionTask>;
   calcDatesInFuture(task: RepetitionTask, holidays: DateTime[]): DateTime[];
   loadHolidays(): AsyncResult<DateTime[], BaseError>;
   moveToProgress(): Promise<void>;
