@@ -72,7 +72,7 @@ export const main: Entrypoint = (denops) => {
       const dates = taskService.calcDatesInFuture(task, holidays);
 
       return dates.map((x) => {
-        let s = x.displayDateFull;
+        let s = ` ${x.displayDateFull}`;
         if (holidays.some((d) => d.equals(x))) {
           s = `${s} ㊡`;
         }

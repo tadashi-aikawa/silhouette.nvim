@@ -15,7 +15,7 @@ local function show_task_dates_popup()
 	local win_col = vim.fn.wincol()
 	local win_width = vim.api.nvim_win_get_width(c_win)
 
-	local width = 20
+	local width = 21
 	local height = 12
 	local row, col
 	local anchor = ""
