@@ -71,18 +71,26 @@
 #### 本日のタスクを挿入
 
 ```vim
-:Silhouette
+:SilhouetteInsertTasks
 ```
 
 #### 2024-08-20のタスクを挿入
 
 ```vim
-:Silhouette 2024-08-20
+:SilhouetteInsertTasks 2024-08-20
 ```
 
 ### `SilhouetteMoveToProgress`
 
 進行中タスク(`- [~]`)が最初に出現する行に移動する。
+
+### `SilhouetteShowTaskDates`
+
+#### [繰り返しタスクファイル]でカーソル配下のタスクファイルの実行予定日を半年先まで表示
+
+```vim
+:SilhouetteShowTaskDates
+```
 
 ## ロードマップ
 
