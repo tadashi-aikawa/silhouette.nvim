@@ -84,7 +84,7 @@
 
 進行中タスク(`- [~]`)が最初に出現する行に移動する。
 
-### `SilhouetteShowTaskDates`
+### `SilhouetteShowTaskDates <daysAhead>`
 
 [繰り返しタスクファイル]でカーソル配下のタスクファイルの実行予定日を表示します。
 
