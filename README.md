@@ -86,10 +86,18 @@
 
 ### `SilhouetteShowTaskDates`
 
-#### [繰り返しタスクファイル]でカーソル配下のタスクファイルの実行予定日を半年先まで表示
+[繰り返しタスクファイル]でカーソル配下のタスクファイルの実行予定日を表示します。
+
+#### 90日後まで表示(default)
 
 ```vim
 :SilhouetteShowTaskDates
+```
+
+#### 1年後まで表示
+
+```vim
+:SilhouetteShowTaskDates 365
 ```
 
 ## ロードマップ

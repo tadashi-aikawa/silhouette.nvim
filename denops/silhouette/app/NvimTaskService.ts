@@ -69,10 +69,14 @@ export class NvimTaskService implements TaskService {
     return this.repository.loadHolidays();
   }
 
-  calcDatesInFuture(task: RepetitionTask, holidays: DateTime[]): DateTime[] {
+  calcDatesInFuture(
+    task: RepetitionTask,
+    holidays: DateTime[],
+    daysAhead: number,
+  ): DateTime[] {
     const today = DateTime.today();
     return today
-      .toDate(today.plusMonths(6))
+      .toDate(today.plusDays(daysAhead))
       .filter((x) => task.shouldTry(x, holidays));
   }
 

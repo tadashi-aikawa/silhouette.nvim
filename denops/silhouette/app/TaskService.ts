@@ -13,7 +13,11 @@ export interface TaskService {
   insertTasks(date: DateTime): Promise<Nullable<BaseError>>;
   loadRepetitionTasks(): AsyncResult<RepetitionTask[], BaseError>;
   loadLineAsRepetitionTask(): AsyncNullable<RepetitionTask>;
-  calcDatesInFuture(task: RepetitionTask, holidays: DateTime[]): DateTime[];
+  calcDatesInFuture(
+    task: RepetitionTask,
+    holidays: DateTime[],
+    daysAhead: number,
+  ): DateTime[];
   loadHolidays(): AsyncResult<DateTime[], BaseError>;
   moveToProgress(): Promise<void>;
 }

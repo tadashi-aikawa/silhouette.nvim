@@ -1,9 +1,11 @@
 local M = {}
 
-local function show_task_dates_popup()
+---@param daysAhead number
+local function show_task_dates_popup(daysAhead)
 	local buf = vim.api.nvim_create_buf(false, true)
 	local c_win = vim.api.nvim_get_current_win()
-	local date_lines = vim.fn["denops#request"]("silhouette", "getTaskDates", {})
+
+	local date_lines = vim.fn["denops#request"]("silhouette", "getTaskDates", { daysAhead })
 	if #date_lines == 0 then
 		return
 	end
@@ -74,8 +76,8 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("SilhouetteMoveToProgress", function(command)
 		vim.fn["denops#request"]("silhouette", "moveToProgress", command.fargs)
 	end, { nargs = "?" })
-	vim.api.nvim_create_user_command("SilhouetteShowTaskDates", function()
-		show_task_dates_popup()
+	vim.api.nvim_create_user_command("SilhouetteShowTaskDates", function(command)
+		show_task_dates_popup(command.fargs[1] and tonumber(command.fargs[1]) or 90)
 	end, { nargs = "?" })
 end
 

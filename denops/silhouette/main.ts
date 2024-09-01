@@ -57,7 +57,9 @@ export const main: Entrypoint = (denops) => {
     /**
      * 現在行の繰り返しタスク実施予定日直近3ヶ月の日付文字列リストを返します
      */
-    async getTaskDates(): Promise<string[]> {
+    async getTaskDates(daysAhead): Promise<string[]> {
+      assert(daysAhead, is.Number);
+
       const task = await taskService.loadLineAsRepetitionTask();
       if (!task) {
         return [];
@@ -69,7 +71,7 @@ export const main: Entrypoint = (denops) => {
         return [];
       }
 
-      const dates = taskService.calcDatesInFuture(task, holidays);
+      const dates = taskService.calcDatesInFuture(task, holidays, daysAhead);
 
       return dates.map((x) => {
         let s = ` ${x.displayDateFull}`;
