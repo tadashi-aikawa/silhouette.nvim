@@ -1,6 +1,6 @@
 <div align="center">
     <h1>Silhouette.nvim</h1>
-    <img src="./silhouette.webp" width="384" />
+    <img src="./silhouette.webp" width="256" />
     <p>
     <div>Neovimでシンプルにタスクを管理するためのプラグインです。</div>
     <div>目の前のタスクに集中することのみにフォーカスしています。</div>
