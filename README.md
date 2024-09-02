@@ -1,4 +1,4 @@
-<p align="center">
+<div align="center">
     <h1>Silhouette.nvim</h1>
     <img src="./silhouette.webp" width="256" />
     <p>
