@@ -1,14 +1,12 @@
-<div align="center">
+<p align="center">
     <h1>Silhouette.nvim</h1>
     <img src="./silhouette.webp" width="256" />
     <p>
-    <div>Neovimでシンプルにタスクを管理するためのプラグインです。</div>
-    <div>目の前のタスクに集中することのみにフォーカスしています。</div>
-    </div>
+        <div>Neovimでシンプルにタスクを管理するためのプラグインです。</div>
+        <div>目の前のタスクに集中することのみにフォーカスしています。</div>
+    </p>
+    <a href="https://github.com/tadashi-aikawa/silhouette.nvim/releases/latest"><img src="https://img.shields.io/github/release/tadashi-aikawa/silhouette.nvim.svg" /></a>
 </div>
-
-> [!WARNING]
-> このプラグインはまだ開発を始めたばかりです。制限事項やバグが多く、ドキュメントがなくても構わないという方のみお試しください。
 
 ## はじめに
 
@@ -100,9 +98,10 @@
 :SilhouetteShowTaskDates 365
 ```
 
-## ロードマップ
+## 制限事項
 
-TODO:
+> [!IMPORTANT]
+> このプラグインは[Silhouette]の機能全てを実装するわけではありません。移植中の機能もあれば移植しない機能もあります。
 
 ---
 
