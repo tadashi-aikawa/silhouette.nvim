@@ -1,0 +1,16 @@
+name: "Release"
+on: workflow_dispatch
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -D --no-save conventional-changelog-conventionalcommits @semantic-release/git
+      - uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -115,7 +115,7 @@ git config core.hooksPath hooks
 
 ### リリース
 
-todo
+[Release Action](https://github.com/tadashi-aikawa/silhouette.nvim/actions/workflows/release.yaml) を実行。
 
 ---
 
