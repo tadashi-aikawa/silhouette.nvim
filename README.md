@@ -103,6 +103,20 @@
 > [!IMPORTANT]
 > このプラグインは[Silhouette]の機能全てを実装するわけではありません。移植中の機能もあれば移植しない機能もあります。
 
+## 開発者向け
+
+### 準備
+
+以下でhooksの場所を変更する。
+
+```bash
+git config core.hooksPath hooks
+```
+
+### リリース
+
+todo
+
 ---
 
 [Silhouette]: https://github.com/tadashi-aikawa/silhouette
