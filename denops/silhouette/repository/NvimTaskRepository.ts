@@ -6,8 +6,10 @@ import {
   DateTime,
   fromPromise,
 } from "npm:owlelia@0.48.1";
-import { RepetitionTask } from "../domain/entity/RepetitionTask.ts";
-import { Repetition } from "../domain/vo/Repetition.ts";
+import {
+  Repetition,
+  RepetitionTask,
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.0.2";
 
 export class NvimTaskRepository implements TaskRepository {
   constructor(

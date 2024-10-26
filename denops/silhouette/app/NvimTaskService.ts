@@ -6,11 +6,12 @@ import {
   BaseError,
   DateTime,
   type Nullable,
-  ok,
 } from "npm:owlelia@0.48.1";
 import type { AppHelper } from "../app-helper.ts";
-import { RepetitionTask } from "../domain/entity/RepetitionTask.ts";
-import { Repetition } from "../domain/vo/Repetition.ts";
+import {
+  Repetition,
+  RepetitionTask,
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.0.2";
 
 const pattern = {
   progress: /[-*] \[~] (?<name>.+)/g,

@@ -1,27 +1,53 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "jsr:@core/unknownutil": "jsr:@core/unknownutil@4.2.0",
-      "npm:owlelia@0.48.1": "npm:owlelia@0.48.1"
+  "version": "4",
+  "specifiers": {
+    "jsr:@core/unknownutil@*": "4.2.0",
+    "jsr:@denops/core@7": "7.0.1",
+    "jsr:@denops/std@*": "7.3.0",
+    "jsr:@denops/std@7.0.3": "7.0.3",
+    "jsr:@tadashi-aikawa/silhouette-core@^1.0.2": "1.0.2",
+    "npm:owlelia@0.48.1": "0.48.1",
+    "npm:owlelia@~0.48.1": "0.48.1"
+  },
+  "jsr": {
+    "@core/unknownutil@4.2.0": {
+      "integrity": "cc0609f2e9fcfd68783c8c34d588261464114770d83047e93eaa1e13732aaedb"
     },
-    "jsr": {
-      "@core/unknownutil@4.2.0": {
-        "integrity": "cc0609f2e9fcfd68783c8c34d588261464114770d83047e93eaa1e13732aaedb"
-      }
+    "@denops/core@7.0.1": {
+      "integrity": "ede39eec60de6d5bf0fbc0337d3e420a9689cc48afea8c71752e6c0fb630bde0"
     },
-    "npm": {
-      "dayjs@1.11.12": {
-        "integrity": "sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==",
-        "dependencies": {}
-      },
-      "owlelia@0.48.1": {
-        "integrity": "sha512-DB5Ac4PCkqZ1uWt8HSTzaHZqh4BiS0DzluWnYFdSd9h4JITtceAq3qO3TmhiMtMJ3s/Z6YWj8sq+GS0yr6oZng==",
-        "dependencies": {
-          "dayjs": "dayjs@1.11.12"
-        }
-      }
+    "@denops/std@7.0.3": {
+      "integrity": "7275bd68a97d977335256f18a7cb53945e196b2cbdff23fe104ddb5b13b1a5cf",
+      "dependencies": [
+        "jsr:@denops/core"
+      ]
+    },
+    "@denops/std@7.3.0": {
+      "integrity": "338904dbfac2c1707fccbd0e432931ecd7037aef00e976baa9fde57ab92a86e7",
+      "dependencies": [
+        "jsr:@denops/core"
+      ]
+    },
+    "@tadashi-aikawa/silhouette-core@1.0.2": {
+      "integrity": "8ca89fc8dbdc55f1eff54b16bfde1bbd9d5960f946984cd34c5cb2c81a53a50e",
+      "dependencies": [
+        "npm:owlelia@~0.48.1"
+      ]
     }
   },
-  "remote": {}
+  "npm": {
+    "dayjs@1.11.13": {
+      "integrity": "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
+    },
+    "owlelia@0.48.1": {
+      "integrity": "sha512-DB5Ac4PCkqZ1uWt8HSTzaHZqh4BiS0DzluWnYFdSd9h4JITtceAq3qO3TmhiMtMJ3s/Z6YWj8sq+GS0yr6oZng==",
+      "dependencies": [
+        "dayjs"
+      ]
+    }
+  },
+  "remote": {
+    "https://deno.land/std@0.224.0/collections/_utils.ts": "b2ec8ada31b5a72ebb1d99774b849b4c09fe4b3a38d07794bd010bd218a16e0b",
+    "https://deno.land/std@0.224.0/collections/deep_merge.ts": "04f8d2a6cfa15c7580e788689bcb5e162512b9ccb18bab1241824b432a78551e"
+  }
 }
