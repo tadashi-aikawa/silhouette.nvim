@@ -1,17 +1,17 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@core/unknownutil@*": "4.2.0",
+    "jsr:@core/unknownutil@*": "4.3.0",
     "jsr:@denops/core@7": "7.0.1",
     "jsr:@denops/std@*": "7.3.0",
     "jsr:@denops/std@7.0.3": "7.0.3",
-    "jsr:@tadashi-aikawa/silhouette-core@^1.0.2": "1.0.2",
+    "jsr:@tadashi-aikawa/silhouette-core@^1.1.0": "1.1.0",
     "npm:owlelia@0.48.1": "0.48.1",
     "npm:owlelia@~0.48.1": "0.48.1"
   },
   "jsr": {
-    "@core/unknownutil@4.2.0": {
-      "integrity": "cc0609f2e9fcfd68783c8c34d588261464114770d83047e93eaa1e13732aaedb"
+    "@core/unknownutil@4.3.0": {
+      "integrity": "538a3687ffa81028e91d148818047df219663d0da671d906cecd165581ae55cc"
     },
     "@denops/core@7.0.1": {
       "integrity": "ede39eec60de6d5bf0fbc0337d3e420a9689cc48afea8c71752e6c0fb630bde0"
@@ -28,8 +28,8 @@
         "jsr:@denops/core"
       ]
     },
-    "@tadashi-aikawa/silhouette-core@1.0.2": {
-      "integrity": "8ca89fc8dbdc55f1eff54b16bfde1bbd9d5960f946984cd34c5cb2c81a53a50e",
+    "@tadashi-aikawa/silhouette-core@1.1.0": {
+      "integrity": "2ec9e0b26bc901d9d75a7c95b0e7e0fd0cc8f19441d843bfc04e8f4dfb4e2223",
       "dependencies": [
         "npm:owlelia@~0.48.1"
       ]
