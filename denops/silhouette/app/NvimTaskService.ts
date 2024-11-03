@@ -11,7 +11,7 @@ import type { AppHelper } from "../app-helper.ts";
 import {
   Repetition,
   RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.1.0";
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.2.0";
 
 const pattern = {
   progress: /[-*] \[~] (?<name>.+)/g,
