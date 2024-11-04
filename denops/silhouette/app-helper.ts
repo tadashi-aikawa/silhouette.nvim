@@ -73,77 +73,10 @@ export class AppHelper {
   }
 
   async writeToBuffer(text: string[]) {
-    const cBuf = await this.getCurrentBuffer();
-    const cur = await this.getCursor();
-    await fn.nvim_buf_set_lines(
-      this.denops,
-      cBuf,
-      cur.row - 1,
-      cur.row,
-      false,
-      text,
-    );
+    await fn.nvim_put(this.denops, text, "", false, false);
   }
 
   async notify(message: string, level: Level): Promise<void> {
     await fn.nvim_notify(this.denops, message, levels[level], {});
-  }
-
-  // FIXME: Luaに処理を移植したら削除する
-  async showHoverPopup(message: string): Promise<void> {
-    const buf = await this.createBuffer();
-    const win = await this.getCurrentWindow();
-
-    await fn.nvim_buf_set_lines(
-      this.denops,
-      buf,
-      0,
-      -1,
-      false,
-      message.split("\n"),
-    );
-
-    // カーソルより上の行数
-    const lineAbove = ((await this.denops.call("winline")) as number) - 1;
-    // ウィンドウの行数
-    const winHeight = (await fn.nvim_win_get_height(
-      this.denops,
-      win,
-    )) as number;
-
-    // カーソルより左の列数
-    const winCol = (await this.denops.call("wincol")) as number;
-    // ウィンドウの列数
-    const winWidth = (await fn.nvim_win_get_width(this.denops, win)) as number;
-
-    const width = 21;
-    const height = 8;
-    let anchor = "";
-    let row, col: number;
-    if (lineAbove < winHeight - lineAbove) {
-      anchor += "N";
-      row = 1;
-    } else {
-      anchor += "S";
-      row = 0;
-    }
-    if (winCol + width < winWidth) {
-      anchor += "W";
-      col = 0;
-    } else {
-      anchor += "E";
-      col = 1;
-    }
-
-    await fn.nvim_open_win(this.denops, buf, false, {
-      anchor: anchor as "SE" | "SW" | "NE" | "NW",
-      relative: "cursor",
-      width,
-      height,
-      row,
-      col,
-      style: "minimal",
-      border: "single",
-    });
   }
 }
