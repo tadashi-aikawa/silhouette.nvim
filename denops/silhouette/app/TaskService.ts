@@ -1,18 +1,17 @@
 import type {
-  AsyncNullable,
   AsyncResult,
   BaseError,
   DateTime,
   Nullable,
 } from "npm:owlelia@0.48.1";
-import type { RepetitionTask } from "jsr:@tadashi-aikawa/silhouette-core@^1.2.0";
+import type { RepetitionTask } from "jsr:@tadashi-aikawa/silhouette-core@^1.3.0";
 import type { TaskRepository } from "../repository/TaskRepository.ts";
 
 export interface TaskService {
   setRepository(repository: TaskRepository): void;
   insertTasks(date: DateTime): Promise<Nullable<BaseError>>;
   loadRepetitionTasks(): AsyncResult<RepetitionTask[], BaseError>;
-  loadLineAsRepetitionTask(): AsyncNullable<RepetitionTask>;
+  loadLineAsRepetitionTask(): AsyncResult<Nullable<RepetitionTask>, Error[]>;
   calcDatesInFuture(
     task: RepetitionTask,
     holidays: DateTime[],

@@ -60,7 +60,16 @@ export const main: Entrypoint = (denops) => {
     async getTaskDates(daysAhead): Promise<string[]> {
       assert(daysAhead, is.Number);
 
-      const task = await taskService.loadLineAsRepetitionTask();
+      const [task, errors] = (
+        await taskService.loadLineAsRepetitionTask()
+      ).unwrap();
+      if (errors) {
+        await appHelper.notify(
+          errors.map((x) => x.message).join("\n"),
+          "ERROR",
+        );
+        return [];
+      }
       if (!task) {
         return [];
       }

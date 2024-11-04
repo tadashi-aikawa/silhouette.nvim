@@ -1,17 +1,18 @@
 import type { TaskService } from "./TaskService.ts";
 import type { TaskRepository } from "../repository/TaskRepository.ts";
 import {
-  AsyncNullable,
   type AsyncResult,
   BaseError,
   DateTime,
+  err,
   type Nullable,
+  ok,
 } from "npm:owlelia@0.48.1";
 import type { AppHelper } from "../app-helper.ts";
 import {
   Repetition,
   RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.2.0";
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.3.0";
 
 const pattern = {
   progress: /[-*] \[~] (?<name>.+)/g,
@@ -50,20 +51,30 @@ export class NvimTaskService implements TaskService {
     return this.repository.loadRepetitionTasks();
   }
 
-  async loadLineAsRepetitionTask(): AsyncNullable<RepetitionTask> {
+  async loadLineAsRepetitionTask(): AsyncResult<
+    Nullable<RepetitionTask>,
+    Error[]
+  > {
     let line = await this.appHelper.getCurrentLine();
     line = line.trim();
     if (!line) {
-      return null;
+      return ok(null);
     }
 
     const [name, repetitions, baseDate] = line.split(",");
-    return RepetitionTask.of({
-      name: name.replace(/^[ \t]+/, ""),
-      repetitions: Repetition.fromRepetitionsStr(repetitions),
-      baseDate: baseDate ? DateTime.of(baseDate) : undefined,
-      indent: name.match("^[ \t]+")?.at(0) ?? "",
-    });
+    const repetitionsOrErr = Repetition.fromRepetitionsStr(repetitions);
+    if (repetitionsOrErr.isErr()) {
+      return err(repetitionsOrErr.error);
+    }
+
+    return ok(
+      RepetitionTask.of({
+        name: name.replace(/^[ \t]+/, ""),
+        repetitions: repetitionsOrErr.value,
+        baseDate: baseDate ? DateTime.of(baseDate) : undefined,
+        indent: name.match("^[ \t]+")?.at(0) ?? "",
+      }),
+    );
   }
 
   loadHolidays(): AsyncResult<DateTime[], BaseError> {
