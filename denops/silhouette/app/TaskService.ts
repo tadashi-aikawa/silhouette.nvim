@@ -4,7 +4,7 @@ import type {
   DateTime,
   Nullable,
 } from "npm:owlelia@0.48.1";
-import type { RepetitionTask } from "jsr:@tadashi-aikawa/silhouette-core@^1.3.0";
+import type { RepetitionTask } from "jsr:@tadashi-aikawa/silhouette-core@^1.4.0";
 import type { TaskRepository } from "../repository/TaskRepository.ts";
 
 export interface TaskService {
