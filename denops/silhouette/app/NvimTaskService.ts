@@ -1,6 +1,7 @@
 import type { TaskService } from "./TaskService.ts";
 import type { TaskRepository } from "../repository/TaskRepository.ts";
 import {
+  AsyncNullable,
   type AsyncResult,
   BaseError,
   DateTime,
@@ -12,7 +13,7 @@ import type { AppHelper } from "../app-helper.ts";
 import {
   Repetition,
   RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.4.0";
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.5.1";
 
 const pattern = {
   progress: /[-*] \[~] (?<name>.+)/g,
@@ -31,7 +32,7 @@ export class NvimTaskService implements TaskService {
     this.repository = repository;
   }
 
-  async insertTasks(date: DateTime): Promise<Nullable<BaseError>> {
+  async insertTasks(date: DateTime): AsyncNullable<BaseError> {
     const [tasks, err] = (await this.loadRepetitionTasks()).unwrap();
     if (err) {
       return err;

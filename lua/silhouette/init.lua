@@ -79,6 +79,13 @@ function M.setup(opts)
 	vim.api.nvim_create_user_command("SilhouetteShowTaskDates", function(command)
 		show_task_dates_popup(command.fargs[1] and tonumber(command.fargs[1]) or 90)
 	end, { nargs = "?" })
+
+	vim.api.nvim_create_user_command("SilhouettePushTimer", function(command)
+		vim.fn["denops#request"]("silhouette", "pushTimer", command.fargs)
+	end, { nargs = "?" })
+	vim.api.nvim_create_user_command("SilhouetteForceStopRecording", function(command)
+		vim.fn["denops#request"]("silhouette", "forceStopRecording", command.fargs)
+	end, { nargs = "?" })
 end
 
 return M

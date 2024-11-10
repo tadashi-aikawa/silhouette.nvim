@@ -7,11 +7,19 @@ import { assert, is } from "jsr:@core/unknownutil";
 import { TaskRepository } from "./repository/TaskRepository.ts";
 import { TaskService } from "./app/TaskService.ts";
 import { config, setup as setupConfig } from "./config.ts";
+import { TimerService } from "./app/TimerService.ts";
+import { NvimTimerService } from "./app/NvimTimerService.ts";
+import type { TimerRepository } from "./repository/TimerRepository.ts";
+import { NvimTimerRepository } from "./repository/NvimTimerRepository.ts";
 
 export const main: Entrypoint = (denops) => {
   const appHelper = new AppHelper(denops);
+
   let taskRepository: TaskRepository;
   let taskService: TaskService;
+
+  let timerRepository: TimerRepository;
+  let timerService: TimerService;
 
   denops.dispatcher = {
     setup(opts) {
@@ -24,6 +32,12 @@ export const main: Entrypoint = (denops) => {
         config.task.holidays_path,
       );
       taskService = new NvimTaskService(appHelper, taskRepository);
+
+      timerRepository = new NvimTimerRepository(
+        appHelper,
+        config.timer.time_storage_path,
+      );
+      timerService = NvimTimerService.create(appHelper, timerRepository);
     },
 
     /**
@@ -89,6 +103,22 @@ export const main: Entrypoint = (denops) => {
         }
         return s;
       });
+    },
+
+    /**
+     * タイマーを押します
+     */
+    async pushTimer() {
+      await timerService.execute({
+        checkBoxMarks: config.timer.check_box_mark,
+      });
+    },
+
+    /**
+     * 計測を強制的に終了します
+     */
+    async forceStopRecording() {
+      await timerService.forceStopRecording();
     },
   };
 };

@@ -7,6 +7,15 @@ const defaultConfig = {
     // 休日設定ファイルのパス
     holidays_path: "./holidays.md",
   },
+  timer: {
+    // 計測途中時間記録用のJSONファイルパス
+    time_storage_path: "./time-storage.json",
+    // 計測開始・計測停止に切り替わったあとのチェックボックスマーク
+    check_box_mark: {
+      recording: "~",
+      // stop: " ",
+    },
+  },
 };
 type Config = typeof defaultConfig;
 

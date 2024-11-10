@@ -18,21 +18,48 @@ type Level = keyof typeof levels;
 export class AppHelper {
   constructor(private denops: Denops) {}
 
-  loadFile(path: string): Promise<string> {
-    if (!this.existsFile(path)) {
+  async existsFile(path: string): Promise<boolean> {
+    try {
+      const stat = await Deno.stat(path);
+      return stat.isFile;
+    } catch {
+      return false;
+    }
+  }
+
+  async loadFile(path: string): Promise<string> {
+    if (!(await this.existsFile(path))) {
       throw Error(`The file is not found: ${path}`);
     }
     return Deno.readTextFile(path);
   }
+  saveFile<T extends string | ReadableStream<string>>(
+    path: string,
+    data: T,
+  ): Promise<void> {
+    return Deno.writeTextFile(path, data);
+  }
+  async deleteFile(path: string): Promise<void> {
+    if (!(await this.existsFile(path))) {
+      throw Error(`The file is not found: ${path}`);
+    }
+    return Deno.remove(path);
+  }
 
-  async existsFile(path: string): Promise<boolean> {
-    return (await Deno.stat(path)).isFile;
+  async loadJson<T>(path: string): Promise<T> {
+    return JSON.parse(await this.loadFile(path)) as T;
+  }
+  saveJson<T>(path: string, data: T): Promise<void> {
+    return this.saveFile(path, JSON.stringify(data, null, 2));
   }
 
   createBuffer(): Promise<Buffer> {
     return fn.nvim_create_buf(this.denops, false, true) as Promise<Buffer>;
   }
 
+  /**
+   * WARN: バッファへの書き込み前に呼び出すと書き込み後のconcealによる描画が正しくされない ことがある
+   */
   getCurrentBuffer(): Promise<Buffer> {
     return fn.nvim_get_current_buf(this.denops) as Promise<Buffer>;
   }
@@ -54,6 +81,9 @@ export class AppHelper {
     return fn.nvim_win_get_height(this.denops, handler) as Promise<number>;
   }
 
+  /**
+   * WARN: バッファへの書き込み前に呼び出すと書き込み後のconcealによる描画が正しくされない ことがある
+   */
   async getCursor(): Promise<Cursor> {
     const [row, col] = (await fn.nvim_win_get_cursor(this.denops, 0)) as [
       number,
@@ -74,6 +104,10 @@ export class AppHelper {
 
   async writeToBuffer(text: string[]) {
     await fn.nvim_put(this.denops, text, "", false, false);
+  }
+
+  async replaceStringInCurrentLine(str: string): Promise<void> {
+    await fn.nvim_set_current_line(this.denops, str);
   }
 
   async notify(message: string, level: Level): Promise<void> {
