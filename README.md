@@ -38,11 +38,22 @@
     -- denops.nvimが起動し終わる前に実行されるとエラーになるためwaitを入れる
     -- マシンスペックや環境によって1000(ms)の値を調整する必要あり
     vim.defer_fn(function()
-      -- 設定はデフォルト値. 指定しなかった場合は下記の値になります
       require("silhouette").setup({
+        -- デフォルト
         task = {
           repetition_tasks_path = "./repetition-tasks.md",
           holidays_path = "./holidays.md",
+        },
+        timer = {
+          -- デフォルト
+          time_storage_path = "./time-storage.json",
+          -- デフォルト
+          check_box_mark: {
+            -- デフォルト
+            recording: "~",
+            -- デフォルトでは未指定
+            -- stop: " ",
+          },
         },
       })
     end, 1000)
@@ -62,7 +73,7 @@
 > [!TIP]
 > ファイルパスは設定で変更できます。
 
-## 対応コマンド
+## 対応コマンド (Task系)
 
 ### `SilhouetteInsertTasks <date?>`
 
@@ -80,7 +91,7 @@
 
 ### `SilhouetteMoveToProgress`
 
-進行中タスク(`- [~]`)が最初に出現する行に移動する。
+進行中タスク(`- [~]`)が最初に出現する行に移動します。
 
 ### `SilhouetteShowTaskDates <daysAhead>`
 
@@ -97,6 +108,30 @@
 ```vim
 :SilhouetteShowTaskDates 365
 ```
+
+## 対応コマンド (Time系)
+
+### `SilhouettePushTimer`
+
+カーソル配下のタスク状態に応じて、タスクの計測を開始/終了します。
+
+```vim
+:SilhouettePushTimer
+```
+
+> [!INFO]
+> 詳細は [Silhouette: Push timer](https://github.com/tadashi-aikawa/silhouette?tab=readme-ov-file#silhouette-push-timer) を参照
+
+### `SilhouetteForceStopRecording`
+
+強制的に現在計測中のタスク計測を停止します。
+
+```vim
+SilhouetteForceStopRecording
+```
+
+> [!INFO]
+> 詳細は [Silhouette: Force stop recording](https://github.com/tadashi-aikawa/silhouette?tab=readme-ov-file#silhouette-force-stop-recording) を参照
 
 ## 制限事項
 
