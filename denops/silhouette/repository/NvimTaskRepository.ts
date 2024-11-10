@@ -28,8 +28,8 @@ export class NvimTaskRepository implements TaskRepository {
           .map((line) => line.split(","))
           .filter((cols) => cols.length > 1)
           .map(([name, repetitions, baseDate]) => {
-            const [reps, errs] =
-              Repetition.fromRepetitionsStr(repetitions).unwrap();
+            const [reps, errs] = Repetition.fromRepetitionsStr(repetitions)
+              .unwrap();
             if (errs) {
               return { errors: errs };
             }
@@ -66,13 +66,13 @@ export class NvimTaskRepository implements TaskRepository {
     return fromPromise(
       this.holidaysFilePath
         ? this.appHelper.loadFile(this.holidaysFilePath).then(
-            (holidaysStr) =>
-              holidaysStr
-                .split("\n")
-                .filter((line) => !line.startsWith("//") && line.trim() !== "")
-                .map(DateTime.of)
-                .filter((x) => !Number.isNaN(x.date.getTime())), // TODO: owleliaに実装する
-          )
+          (holidaysStr) =>
+            holidaysStr
+              .split("\n")
+              .filter((line) => !line.startsWith("//") && line.trim() !== "")
+              .map(DateTime.of)
+              .filter((x) => !Number.isNaN(x.date.getTime())), // TODO: owleliaに実装する
+        )
         : Promise.resolve([]),
     );
   }
