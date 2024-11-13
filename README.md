@@ -133,6 +133,54 @@ SilhouetteForceStopRecording
 > [!INFO]
 > 詳細は [Silhouette: Force stop recording](https://github.com/tadashi-aikawa/silhouette?tab=readme-ov-file#silhouette-force-stop-recording) を参照
 
+## FAQ
+
+#### `SilhouettePushTimer` で計測開始したときのタスクのマークを変えたくない
+
+configの `timer.check_box_mark.recording` を指定しないようにしてください。
+
+#### `SilhouettePushTimer` で計測終了したときにタスクのマークを変えたい
+
+configの `timer.check_box_mark.stop` に任意のマークを設定してください。( `-` `x` など)
+
+#### markdown-toggle.nvim でタスクを完了(マークをxに)したときだけ計測終了したい
+
+[markdown-toggle.nvim] のキーバインドでtoggle後に特定条件下のときだけ `SilhouettePushTimer` を実行するようにします。コメントが書かれている箇所がポイント。
+
+```lua
+{
+  "roodolv/markdown-toggle.nvim",
+  config = function()
+    require("markdown-toggle").setup({
+      cycle_box_table = true,
+      box_table = { "x" },
+      list_before_box = true,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      desc = "markdown-toggle.nvim keymaps",
+      pattern = { "markdown", "markdown.mdx" },
+      callback = function(args)
+        local opts = { silent = true, noremap = true, buffer = args.buf }
+        local toggle = require("markdown-toggle")
+
+        vim.keymap.set({ "n", "v" }, "<F12>", function()
+          toggle.checkbox()
+
+          -- 現在行を取得し
+          local cline = vim.api.nvim_get_current_line()
+          -- 計測中かつ完了マークになっているときだけ
+          if string.find(cline, "- %[x%] .+ ``") then
+            -- SilhouettePushTimer を実行 -> 計測完了となる
+            vim.cmd("SilhouettePushTimer")
+          end
+        end, opts)
+      end,
+    })
+  end,
+}
+```
+
 ## 制限事項
 
 > [!IMPORTANT]
@@ -160,3 +208,4 @@ git config core.hooksPath hooks
 [lazy.nvim]: https://github.com/folke/lazy.nvim
 [繰り返しタスクファイル]: https://github.com/tadashi-aikawa/silhouette?tab=readme-ov-file#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%82%BF%E3%82%B9%E3%82%AF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB
 [休日設定ファイル]: https://github.com/tadashi-aikawa/silhouette?tab=readme-ov-file#%E4%BC%91%E6%97%A5%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB
+[markdown-toggle.nvim]: https://github.com/roodolv/markdown-toggle.nvim
