@@ -6,6 +6,7 @@
         <div>目の前のタスクに集中することのみにフォーカスしています。</div>
     </p>
     <a href="https://github.com/tadashi-aikawa/silhouette.nvim/releases/latest"><img src="https://img.shields.io/github/release/tadashi-aikawa/silhouette.nvim.svg" /></a>
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
 </div>
 
 ## はじめに
