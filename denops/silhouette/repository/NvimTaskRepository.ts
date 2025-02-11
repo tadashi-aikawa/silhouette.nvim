@@ -9,7 +9,7 @@ import {
 import {
   Repetition,
   RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.5.1";
+} from "jsr:@tadashi-aikawa/silhouette-core@^1.6.0";
 
 export class NvimTaskRepository implements TaskRepository {
   constructor(

@@ -11,6 +11,7 @@
     "jsr:@tadashi-aikawa/silhouette-core@^1.2.0": "1.2.0",
     "jsr:@tadashi-aikawa/silhouette-core@^1.3.0": "1.3.0",
     "jsr:@tadashi-aikawa/silhouette-core@^1.4.0": "1.4.0",
+    "jsr:@tadashi-aikawa/silhouette-core@^1.6.0": "1.6.0",
     "npm:owlelia@0.48.1": "0.48.1",
     "npm:owlelia@~0.48.1": "0.48.1"
   },
@@ -62,6 +63,12 @@
     },
     "@tadashi-aikawa/silhouette-core@1.4.0": {
       "integrity": "ca393f52fc3cfe460b3560c4ba36c5624969784541ed068f829afb4102db03b7",
+      "dependencies": [
+        "npm:owlelia@~0.48.1"
+      ]
+    },
+    "@tadashi-aikawa/silhouette-core@1.6.0": {
+      "integrity": "68e5fe273657f80b8c5006a4e4cffcd518f1eb05897e50c58d55bab6ffe89677",
       "dependencies": [
         "npm:owlelia@~0.48.1"
       ]
