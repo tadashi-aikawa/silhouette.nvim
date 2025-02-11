@@ -63,7 +63,7 @@ export class NvimTaskService implements TaskService {
     }
 
     const [name, repetitions, baseDate] = line.split(",");
-    const repetitionsOrErr = Repetition.fromRepetitionsStr(repetitions);
+    const repetitionsOrErr = Repetition.fromRepetitionsStr(repetitions.trim());
     if (repetitionsOrErr.isErr()) {
       return err(repetitionsOrErr.error);
     }
