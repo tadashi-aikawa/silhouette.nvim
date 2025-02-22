@@ -197,6 +197,8 @@ configの `timer.check_box_mark.stop` に任意のマークを設定してくだ
 git config core.hooksPath hooks
 ```
 
+[denops.nvim]の部分を開発する場合は `denops/silhouette` にカレントディレクトリを移動することを推奨します。
+
 ### リリース
 
 [Release Action](https://github.com/tadashi-aikawa/silhouette.nvim/actions/workflows/release.yaml) を実行。
