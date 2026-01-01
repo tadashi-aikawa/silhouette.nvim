@@ -1,10 +1,5 @@
-import type {
-  AsyncResult,
-  BaseError,
-  DateTime,
-  Nullable,
-} from "npm:owlelia@0.48.1";
-import type { RepetitionTask } from "jsr:@tadashi-aikawa/silhouette-core@^1.6.0";
+import type { AsyncResult, BaseError, DateTime, Nullable } from "owlelia";
+import type { RepetitionTask } from "silhouette-core";
 import type { TaskRepository } from "../repository/TaskRepository.ts";
 
 export interface TaskService {

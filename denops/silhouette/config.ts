@@ -1,4 +1,4 @@
-import { deepMerge } from "https://deno.land/std@0.224.0/collections/deep_merge.ts";
+import { deepMerge } from "@std/collections/deep_merge";
 
 const defaultConfig = {
   task: {

@@ -1,10 +1,5 @@
 import type { AppHelper } from "../app-helper.ts";
-import {
-  type AsyncResult,
-  BaseError,
-  DateTime,
-  fromPromise,
-} from "npm:owlelia@0.48.1";
+import { type AsyncResult, BaseError, DateTime, fromPromise } from "owlelia";
 import type { TimerRepository } from "./TimerRepository.ts";
 import { Timer } from "../domain/vo/Timer.ts";
 

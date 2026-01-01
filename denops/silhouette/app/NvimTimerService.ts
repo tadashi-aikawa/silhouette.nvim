@@ -1,10 +1,10 @@
-import { DateTime } from "npm:owlelia@0.48.1";
+import { DateTime } from "owlelia";
 import type { AppHelper } from "../app-helper.ts";
 import { Timer } from "../domain/vo/Timer.ts";
 import { type CheckBoxMarks, TimerStatus } from "../domain/vo/TimerStatus.ts";
 import type { TimerRepository } from "../repository/TimerRepository.ts";
 import type { TimerService } from "./TimerService.ts";
-import { ExhaustiveError } from "https://jsr.io/@tadashi-aikawa/silhouette-core/1.6.0/util/errors.ts";
+import { ExhaustiveError } from "silhouette-core-errors";
 
 export class NvimTimerService implements TimerService {
   constructor(

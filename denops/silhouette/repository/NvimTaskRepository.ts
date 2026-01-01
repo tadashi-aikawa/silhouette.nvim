@@ -1,15 +1,7 @@
 import type { AppHelper } from "../app-helper.ts";
 import type { TaskRepository } from "./TaskRepository.ts";
-import {
-  type AsyncResult,
-  BaseError,
-  DateTime,
-  fromPromise,
-} from "npm:owlelia@0.48.1";
-import {
-  Repetition,
-  RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.6.0";
+import { type AsyncResult, BaseError, DateTime, fromPromise } from "owlelia";
+import { Repetition, RepetitionTask } from "silhouette-core";
 
 export class NvimTaskRepository implements TaskRepository {
   constructor(

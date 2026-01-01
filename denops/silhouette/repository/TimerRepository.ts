@@ -1,4 +1,4 @@
-import type { AsyncResult, BaseError } from "npm:owlelia@0.48.1";
+import type { AsyncResult, BaseError } from "owlelia";
 import type { Timer } from "../domain/vo/Timer.ts";
 
 export interface TimerRepository {

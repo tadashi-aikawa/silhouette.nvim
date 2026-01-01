@@ -1,9 +1,9 @@
-import type { Entrypoint } from "jsr:@denops/std@7.0.3";
+import type { Entrypoint } from "@denops/std";
 import { AppHelper } from "./app-helper.ts";
 import { NvimTaskService } from "./app/NvimTaskService.ts";
 import { NvimTaskRepository } from "./repository/NvimTaskRepository.ts";
-import { DateTime } from "npm:owlelia@0.48.1";
-import { assert, is } from "jsr:@core/unknownutil";
+import { DateTime } from "owlelia";
+import { assert, is } from "@core/unknownutil";
 import { TaskRepository } from "./repository/TaskRepository.ts";
 import { TaskService } from "./app/TaskService.ts";
 import { config, setup as setupConfig } from "./config.ts";

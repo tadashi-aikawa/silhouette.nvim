@@ -62,12 +62,11 @@ local function show_task_dates_popup(daysAhead)
 end
 
 function M.setup(opts)
-	-- ここでdenopsがsilhouetteを読み込み終わるまで待っているつもりが...
-	-- local result = vim.fn["denops#plugin#wait"]("silhouette", {timeout = 5000, interval = 100})
-	-- if result ~= 0 then
-	-- 	print(result)
-	-- end
-	-- ここが実行されてsetupが見つからなくてエラーになってしまう...
+	local result = vim.fn["denops#plugin#wait"]("silhouette", { timeout = 5000, interval = 100, silent = 1 })
+	if result ~= 0 then
+		vim.notify("denops plugin load failed: silhouette (code=" .. result .. ")", vim.log.levels.ERROR)
+		return
+	end
 	vim.fn["denops#request"]("silhouette", "setup", { vim.fn.json_encode(opts) })
 
 	vim.api.nvim_create_user_command("SilhouetteInsertTasks", function(command)

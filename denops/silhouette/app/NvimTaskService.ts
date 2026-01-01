@@ -8,12 +8,9 @@ import {
   err,
   type Nullable,
   ok,
-} from "npm:owlelia@0.48.1";
+} from "owlelia";
 import type { AppHelper } from "../app-helper.ts";
-import {
-  Repetition,
-  RepetitionTask,
-} from "jsr:@tadashi-aikawa/silhouette-core@^1.6.0";
+import { Repetition, RepetitionTask } from "silhouette-core";
 
 const pattern = {
   progress: /[-*] \[~] (?<name>.+)/g,

@@ -1,4 +1,4 @@
-import { assertEquals } from "jsr:@std/assert@1";
+import { assertEquals } from "@std/assert";
 import { toHHmmss } from "./times.ts";
 import { parameterizedTest } from "./tests.ts";
 

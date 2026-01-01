@@ -1,5 +1,5 @@
-import { Denops } from "jsr:@denops/core@^7.0.0/type";
-import * as fn from "jsr:@denops/std/function/nvim";
+import { Denops } from "@denops/core/type";
+import * as fn from "@denops/std/function/nvim";
 
 export type Buffer = number & { _id: Buffer };
 export type WindowHandler = number;
@@ -111,6 +111,6 @@ export class AppHelper {
   }
 
   async notify(message: string, level: Level): Promise<void> {
-    await fn.nvim_notify(this.denops, message, levels[level], {});
+    await this.denops.call("nvim_notify", message, levels[level], {});
   }
 }
